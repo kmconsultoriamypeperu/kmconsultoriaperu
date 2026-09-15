@@ -249,6 +249,55 @@
   .team-name{font-family:'Archivo Black';font-size:16px;margin-top:6px;line-height:1.25;}
   .team-role{font-size:13.5px;color:var(--ink);opacity:0.7;margin-top:6px;}
 
+  /* ---------- contact form ---------- */
+  .contact{padding:60px 0 20px;}
+  .contact h2{font-size:clamp(24px,5vw,32px);max-width:18ch;}
+  .contact > .wrap > p{margin-top:12px;color:var(--ink);opacity:0.72;max-width:52ch;font-size:15.5px;}
+  .contact-form{
+    margin-top:32px;
+    background:#fff;
+    border:1px solid var(--line);
+    padding:26px 22px;
+    max-width:560px;
+    position:relative;
+  }
+  .contact-form::before,.contact-form::after{
+    content:"";position:absolute;width:9px;height:9px;
+    border-color:var(--ink);opacity:0.4;
+  }
+  .contact-form::before{top:-1px;left:-1px;border-top:1.5px solid;border-left:1.5px solid;}
+  .contact-form::after{bottom:-1px;right:-1px;border-bottom:1.5px solid;border-right:1.5px solid;}
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block;font-size:13.5px;font-weight:600;color:var(--ink);
+    margin-bottom:7px;
+  }
+  .field input[type="text"],
+  .field input[type="tel"],
+  .field textarea{
+    width:100%;font-family:inherit;font-size:15px;color:var(--ink);
+    background:var(--bone);border:1px solid var(--line);border-radius:3px;
+    padding:11px 12px;
+  }
+  .field textarea{resize:vertical;min-height:64px;}
+  .field input:focus,.field textarea:focus{outline:2px solid var(--orange);outline-offset:1px;}
+  .service-options{display:flex;flex-direction:column;gap:10px;}
+  .service-option{
+    display:flex;align-items:center;gap:10px;
+    border:1px solid var(--line);border-radius:3px;
+    padding:10px 12px;font-size:14.5px;cursor:pointer;
+  }
+  .service-option:has(input:checked){border-color:var(--orange);background:rgba(224,123,30,0.06);}
+  .service-option input{accent-color:var(--orange);width:16px;height:16px;flex:none;}
+  .contact-submit{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--wa);color:#fff;font-weight:700;font-size:15.5px;
+    padding:14px 22px;border-radius:4px;border:none;cursor:pointer;
+    width:100%;justify-content:center;margin-top:6px;
+  }
+  .contact-submit svg{width:19px;height:19px;flex:none;}
+  .contact-note{font-size:12.5px;color:var(--ink);opacity:0.6;margin-top:12px;}
+
   footer{
     padding:40px 0 110px;
     font-size:13px;color:var(--ink);opacity:0.62;
@@ -407,6 +456,110 @@
     </div>
   </div>
 </section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="dim">Escríbenos</div>
+    <h2>Cuéntanos qué necesitas</h2>
+    <p>Completa tus datos y el servicio que te interesa. Te escribimos por WhatsApp al instante.</p>
+
+    <form class="contact-form" id="contact-form">
+      <div class="field">
+        <label for="c-nombre">Nombre completo</label>
+        <input type="text" id="c-nombre" name="nombre" required placeholder="Tu nombre">
+      </div>
+      <div class="field">
+        <label for="c-telefono">Teléfono / WhatsApp</label>
+        <input type="tel" id="c-telefono" name="telefono" required placeholder="+51 9XX XXX XXX">
+      </div>
+      <div class="field">
+        <label>¿Qué servicio te interesa?</label>
+        <div class="service-options">
+          <label class="service-option">
+            <input type="radio" name="servicio" value="Gestión de importaciones" checked>
+            Gestión de importaciones
+          </label>
+          <label class="service-option">
+            <input type="radio" name="servicio" value="Asesoría en trabajos de investigación">
+            Asesoría en trabajos de investigación
+          </label>
+          <label class="service-option">
+            <input type="radio" name="servicio" value="Acompañamiento financiero y contable">
+            Acompañamiento financiero y contable
+          </label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="c-mensaje">Mensaje (opcional)</label>
+        <textarea id="c-mensaje" name="mensaje" placeholder="Cuéntanos brevemente tu caso"></textarea>
+      </div>
+      <button type="submit" class="contact-submit">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.22 8.22 0 0 1-1.26-4.34c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.17 8.17 0 0 1 2.42 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.01 2.57.12.17 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+        Enviar por WhatsApp
+      </button>
+      <p class="contact-note">Al enviar, se abrirá WhatsApp con tu mensaje ya redactado para que lo confirmes y lo envíes.</p>
+    </form>
+  </div>
+</section>
+
+<script>
+  // ============================================================
+  // CONFIGURACIÓN DEL REGISTRO EN GOOGLE SHEETS (opcional)
+  //
+  // 1. Crea un Google Form con 3 preguntas de texto corto:
+  //    "Nombre", "Teléfono", "Servicio" y "Mensaje" (en ese orden
+  //    no importa, pero usa el mismo tipo "Respuesta corta").
+  // 2. En el Form, ve a los 3 puntos > "Insertar respuestas
+  //    con anticipación" (Get pre-filled link), completa cualquier
+  //    valor de prueba en cada campo y genera el enlace.
+  // 3. Ese enlace se verá así:
+  //    https://docs.google.com/forms/d/e/XXXX/viewform?usp=pp_url&entry.111=a&entry.222=b&entry.333=c&entry.444=d
+  //    - La parte "XXXX" (entre /d/e/ y /viewform) es tu FORM_ID.
+  //    - Cada "entry.111", "entry.222"... es el ID de cada pregunta.
+  // 4. Reemplaza los valores de abajo con los tuyos.
+  // 5. Si dejas FORM_ID vacío, el formulario funciona igual pero
+  //    SOLO abre WhatsApp (no guarda nada en Sheets).
+  // ============================================================
+  const GOOGLE_FORM_ID = "1FAIpQLSdZlUcCkMS5mO0wyRT3LftOcL-o2Tvg5PTYEsY2RTSaqHgNJA";
+  const GOOGLE_FORM_ENTRIES = {
+    nombre: "entry.1873942319",
+    telefono: "entry.835666829",
+    servicio: "entry.1639797724",
+    mensaje: "entry.1718736095"
+  };
+
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const nombre = document.getElementById('c-nombre').value.trim();
+    const telefono = document.getElementById('c-telefono').value.trim();
+    const mensaje = document.getElementById('c-mensaje').value.trim();
+    const servicio = document.querySelector('input[name="servicio"]:checked').value;
+
+    // 1) Registro silencioso en Google Sheets (si está configurado)
+    if (GOOGLE_FORM_ID && GOOGLE_FORM_ENTRIES.nombre) {
+      const data = new FormData();
+      data.append(GOOGLE_FORM_ENTRIES.nombre, nombre);
+      data.append(GOOGLE_FORM_ENTRIES.telefono, telefono);
+      data.append(GOOGLE_FORM_ENTRIES.servicio, servicio);
+      data.append(GOOGLE_FORM_ENTRIES.mensaje, mensaje);
+
+      fetch(
+        `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`,
+        { method: 'POST', mode: 'no-cors', body: data }
+      ).catch(function () {
+        // Si falla el registro en Sheets, no bloquea el envío por WhatsApp
+      });
+    }
+
+    // 2) Redirección a WhatsApp con el mensaje ya armado
+    let texto = `Hola Miguel, soy ${nombre}. Me interesa el servicio de *${servicio}*.`;
+    texto += ` Mi teléfono de contacto es ${telefono}.`;
+    if (mensaje) texto += ` ${mensaje}`;
+
+    window.location.href = `https://wa.me/51991273597?text=${encodeURIComponent(texto)}`;
+  });
+</script>
 
 <footer>
   <div class="wrap">
