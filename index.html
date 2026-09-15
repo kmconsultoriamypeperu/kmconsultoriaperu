@@ -528,7 +528,7 @@
     mensaje: "entry.1718736095"
   };
 
-  document.getElementById('contact-form').addEventListener('submit', function (e) {
+  document.getElementById('contact-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const nombre = document.getElementById('c-nombre').value.trim();
@@ -536,7 +536,11 @@
     const mensaje = document.getElementById('c-mensaje').value.trim();
     const servicio = document.querySelector('input[name="servicio"]:checked').value;
 
-    // 1) Registro silencioso en Google Sheets (si está configurado)
+    // 1) Registro en Google Sheets (si está configurado).
+    //    IMPORTANTE: usamos "await" para esperar a que la petición
+    //    termine antes de redirigir a WhatsApp. Si no se espera,
+    //    el navegador puede cancelar la petición a medio camino al
+    //    saltar a la otra página, y la respuesta nunca llega a Sheets.
     if (GOOGLE_FORM_ID && GOOGLE_FORM_ENTRIES.nombre) {
       const data = new FormData();
       data.append(GOOGLE_FORM_ENTRIES.nombre, nombre);
@@ -544,12 +548,14 @@
       data.append(GOOGLE_FORM_ENTRIES.servicio, servicio);
       data.append(GOOGLE_FORM_ENTRIES.mensaje, mensaje);
 
-      fetch(
-        `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`,
-        { method: 'POST', mode: 'no-cors', body: data }
-      ).catch(function () {
+      try {
+        await fetch(
+          `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`,
+          { method: 'POST', mode: 'no-cors', body: data }
+        );
+      } catch (err) {
         // Si falla el registro en Sheets, no bloquea el envío por WhatsApp
-      });
+      }
     }
 
     // 2) Redirección a WhatsApp con el mensaje ya armado
